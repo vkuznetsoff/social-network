@@ -1,0 +1,34 @@
+.dialogs {
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+  padding: 10px;
+}
+
+.dialogList {
+  text-decoration: none;
+  text-decoration: none;
+}
+
+.dialogItem {
+  color: blue;
+  text-decoration: none;
+  /* align-content: center; */
+  
+}
+
+.dialogItem img {
+  width: 30px;
+  margin: 0 10px
+  
+}
+
+.active {
+  color: chocolate;
+  text-decoration: none;
+}
+
+.messageList {
+}
+
+.messageItem {
+}

@@ -1,0 +1,17 @@
+.content {
+  grid-area: c;
+  
+  }
+
+  .item {
+    color: rgb(45, 49, 38);
+  }
+
+  .newpost {
+    color:lightyellow;
+    background-color: rgb(205, 206, 207);
+  }
+
+  /* .content img {
+    width: 75%;
+  } */

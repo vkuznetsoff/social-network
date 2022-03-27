@@ -1,0 +1,35 @@
+.nav {
+  grid-area: n;
+  background-color: darksalmon;
+  padding: 20px;
+  }
+
+ 
+  .item {
+    color: ivory;
+    text-decoration: none;
+  }
+
+  /* .activelink {
+    color: rgb(68, 66, 54);
+  } */
+
+  .active {
+    color: rgb(80, 77, 60);
+    text-decoration: none;
+  }
+
+  .friendsNavItem {
+    display:inline-block;
+    padding: 10px;
+   }
+   
+   .friendsNavItem img {
+    display:block;
+    width: 50px;
+    border-radius: 30px;
+   }
+
+   .friendsNav {
+
+   }

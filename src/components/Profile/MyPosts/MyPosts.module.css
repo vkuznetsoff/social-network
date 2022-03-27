@@ -1,0 +1,21 @@
+.posts {
+  padding: 10px;
+  color: rgb(46, 49, 42);
+}
+
+  .item {
+    color: rgb(179, 59, 115);
+  }
+
+  .newpost {
+    color:lightyellow;
+    background-color: royalblue;
+  }
+
+  .item img {
+    width: 70px;
+  }
+
+  .addButton {
+    margin: 10px ;
+  }
