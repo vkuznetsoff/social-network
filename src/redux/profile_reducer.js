@@ -5,6 +5,7 @@ const DELETE_POST = "DELETE_POST";
 //const UPDATE_POST = "UPDATE-POST-TEXT";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_USER_STATUS = "SET_USER_STATUS";
+const LOAD_PHOTO_SUCCESS = "LOAD_PHOTO_SUCCESS";
 
 let initialState = {
   posts: [
@@ -15,7 +16,7 @@ let initialState = {
 
   //newPostText: "some text",
   profile: null,
-  status: "",
+  status: ""
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -30,26 +31,11 @@ const profileReducer = (state = initialState, action) => {
       let stateCopy = {
         ...state,
         posts: [...state.posts, newPost],
-        //newPostText: "",
       };
-      // stateCopy.posts = [...state.posts];
-      // stateCopy.posts.push(newPost);
-      // stateCopy.newPostText = "";
-      return stateCopy;
-
-      // state.posts.push(newPost);
-      // state.newPostText = "";
-      // return state;
+  
+      return stateCopy;    
     }
-    // case UPDATE_POST: {
-    //   let stateCopy = {
-    //     ...state,
-    //     newPostText: action.newtext,
-    //   };
-
-    //   return stateCopy;
-    // }
-
+   
     case DELETE_POST:
       return { ...state, posts: state.posts.filter(p => p.id != action.postID) };
 
@@ -59,6 +45,9 @@ const profileReducer = (state = initialState, action) => {
     case SET_USER_STATUS:
       return { ...state, status: action.status };
 
+    case LOAD_PHOTO_SUCCESS:
+      return { ...state, profile: {...state.profile, photos: action.photos}};
+
     default:
       return state;
   }
@@ -67,19 +56,20 @@ const profileReducer = (state = initialState, action) => {
 export const addPostActionCreator = (newposttext) => ({ type: ADD_POST, newposttext });
 
 export const postDeleteAC = (postID) => ({ type: DELETE_POST, postID });
-// export const updatePostActionCreator = (txt) => ({
-//   type: UPDATE_POST,
-//   newtext: txt,
-// });
+
 export const setUserProfile = (profile) => ({
   type: SET_USER_PROFILE,
   profile,
 });
-export const setUserStatus = (status) => ({
-  type: SET_USER_STATUS,
-  status,
+export const setUserStatus = (status) => ({ type: SET_USER_STATUS, status, });
+
+export const loadPhotoSuccess = (photos) => ({
+  type: LOAD_PHOTO_SUCCESS,
+  photos
 });
 
+
+//Thunk
 export const getUserProfile = (userID) => async (dispatch) => {
   let response = await userAPI.getProfile(userID);
   dispatch(setUserProfile(response.data));
@@ -94,6 +84,13 @@ export const updateStatus = (status) => async (dispatch) => {
   let response = await profileAPI.updateStatus(status);
   if (response.resultCode === 0) {
     dispatch(setUserStatus(status));
+  }
+};
+
+export const savePhoto = (file) => async (dispatch) => {
+  let response = await profileAPI.loadPhoto(file);
+  if (response.resultCode === 0) {
+    dispatch(loadPhotoSuccess(response.data));
   }
 };
 

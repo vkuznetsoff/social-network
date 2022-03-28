@@ -8,6 +8,13 @@
 
 .profileDescription {
   padding: 10px;
+  
+}
+
+.profileDescription img{
+  padding: 10px;
+  width: 200px;
+  border: 1px solid
 }
 
 .img {

@@ -1,14 +1,19 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { NO_PROFILE_IMAGE } from "../../img/img";
 import s from "./Nav.module.css";
 
 const setActive = (navData) => (navData.isActive ? s.active : s.item);
 
 const Nav = () => {
-  let imgPath =
-    "https://www.clipartkey.com/mpngs/m/310-3105768_greg-yates-section-300-chairperson-low-voltage-metering.png";
+  
   return (
     <nav className={s.nav}>
+      <div className={s.item}>
+        <NavLink to="/profile/22694" className={setActive}>
+          MyPage
+        </NavLink>
+      </div>
       <div className={s.item}>
         <NavLink to="/profile" className={setActive}>
           Profile
@@ -48,17 +53,17 @@ const Nav = () => {
 
         <div className={s.friendsNav}>
           <div className={s.friendsNavItem}>
-            <img src={imgPath} />
+            <img src={NO_PROFILE_IMAGE} />
             image1
           </div>
 
           <div class={s.friendsNavItem}>
-            <img src={imgPath} />
+            <img src={NO_PROFILE_IMAGE} />
             image2
           </div>
 
           <div class={s.friendsNavItem}>
-            <img src={imgPath} />
+            <img src={NO_PROFILE_IMAGE} />
             image3
           </div>
         </div>
