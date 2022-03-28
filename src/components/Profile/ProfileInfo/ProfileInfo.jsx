@@ -8,7 +8,7 @@ const ProfileInfo = (props) => {
   
   const onChangePhoto = (e) => {
     debugger
-    if (e.target.files.lenght) {
+    if (e.target.files.length) {
       props.savePhoto(e.target.files[0])
     }
   }

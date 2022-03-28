@@ -37,7 +37,7 @@ class App extends React.Component {
         <div className={styles.appWrapper}>
           <HeaderContainer />
           <Nav />
-          <div className={styles.appWrapperCcontent}>
+          <div className={styles.appWrapperContent}>
             <Routes>
               <Route path='/profile/:userID' element={
                 <React.Suspense fallback={<div>Loading...</div>}>
