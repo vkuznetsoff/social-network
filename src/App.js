@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import styles from "./App.module.css";
 import Nav from "./components/Nav/Nav";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Music from "./components/Music/Music";
@@ -34,10 +34,10 @@ class App extends React.Component {
     return (
       <BrowserRouter>
 
-        <div className="app-wrapper">
+        <div className={styles.appWrapper}>
           <HeaderContainer />
           <Nav />
-          <div className="app-wrapper-content">
+          <div className={styles.appWrapperCcontent}>
             <Routes>
               <Route path='/profile/:userID' element={
                 <React.Suspense fallback={<div>Loading...</div>}>

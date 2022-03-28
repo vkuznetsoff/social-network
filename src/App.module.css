@@ -1,17 +1,18 @@
-.app-wrapper {
+.appWrapper {
   margin: 0 auto;
   display: grid;
-  /* gap: 20px; */
+  
     grid-template-areas: 
     "h h" 
     "n c";
   grid-template-rows: 60xp 1fr;
   grid-template-columns: 2fr 10fr;
-  /* grid-gap: 10px; */
+  
   
 }
 
-.app-wrapper-content {
+.appWrapperCcontent {
+  padding: 5px 10px;
   background-color: aliceblue;
 };
 
