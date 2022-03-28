@@ -5,7 +5,7 @@ import s from "./ProfileInfo.module.css";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 const ProfileInfo = (props) => {
-  
+
   const onChangePhoto = (e) => {
     debugger
     if (e.target.files.length) {
@@ -16,7 +16,7 @@ const ProfileInfo = (props) => {
   if (!props.profile) {
     return <Preloader />;
   }
-  
+
   return (
     <div>
       {/* <img
@@ -25,13 +25,31 @@ const ProfileInfo = (props) => {
       /> */}
 
       <div className={s.profileDescription}>
-        <img src={props.profile.photos.large || NO_PROFILE_IMAGE} />
-        { (props.isOwner) && <input type={"file"} onChange={onChangePhoto}/> }
+        <span>
+          <img src={props.profile.photos.large || NO_PROFILE_IMAGE} />
+          <div>
+            {(props.isOwner) && <input type={"file"} onChange={onChangePhoto} />}
+          </div>
+        </span>
 
-        <ProfileStatusWithHooks
-          status={props.status}
-          updateStatus={props.updateStatus}
-        />
+        <span className={s.descriptionInfo}>
+          <div className={s.descriptionItem}>Full name: </div>
+          <div className={s.descriptionItem}>Contacts:</div>
+          <div className={s.statusWrapper}>
+            <div className={s.profileStatus}>Status:</div>
+            <ProfileStatusWithHooks
+              status={props.status}
+              updateStatus={props.updateStatus}
+            />
+          </div>
+
+
+
+
+        </span>
+
+
+
       </div>
     </div>
   );

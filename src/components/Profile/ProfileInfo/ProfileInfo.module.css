@@ -1,13 +1,17 @@
 .myimg {
   width: 50%;
-}
 
-.content {
-  
 }
 
 .profileDescription {
   padding: 10px;
+  display: grid;
+  grid-template-columns: 0.5fr 0.5fr 1fr ;
+  grid-column-start: start;
+}
+
+.descriptionInfo {
+  text-align: left;
   
 }
 
@@ -19,6 +23,21 @@
 
 .img {
   width:50%
+}
+
+.descriptionItem {
+  margin-top: 10px;
+  font-weight: 800;
+}
+
+ .profileStatus {
+  font-size: 36px;
+}
+
+.statusWrapper {
+  margin-top: 15px ;
+  border: 1px solid ;
+
 }
 
 
