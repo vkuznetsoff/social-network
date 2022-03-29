@@ -59,9 +59,6 @@ const Login = (props) => {
     return  <Navigate to={"/profile/22694"} /> 
   }
 
-  
-  
-
   return (
     <div>
       <h1>LOGIN</h1>

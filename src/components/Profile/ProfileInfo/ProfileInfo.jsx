@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { NO_PROFILE_IMAGE } from "../../../img/img";
 import Preloader from "../../Preloader/Preloader";
+import { ProfileDataForm, ProfileDataReduxForm } from "./ProfileDataForm";
 import s from "./ProfileInfo.module.css";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 const ProfileInfo = (props) => {
 
+  const [editMode, setEditMode] = useState(false)
+
   const onChangePhoto = (e) => {
-    debugger
     if (e.target.files.length) {
       props.savePhoto(e.target.files[0])
     }
@@ -17,6 +19,19 @@ const ProfileInfo = (props) => {
     return <Preloader />;
   }
 
+  const onEditProfile = () =>{
+    setEditMode(true)
+  }
+
+  const onSubmit = (formData) => {
+    // console.log('OnSubmit')
+    // console.log(formData)
+    // debugger
+    // console.log(props.profile.userId)
+    props.saveProfile(formData, props.profile.userId)
+    setEditMode(false)
+  }
+  
   return (
     <div>
       {/* <img
@@ -33,8 +48,10 @@ const ProfileInfo = (props) => {
         </span>
 
         <span className={s.descriptionInfo}>
-          <div className={s.descriptionItem}>Full name: </div>
-          <div className={s.descriptionItem}>Contacts:</div>
+          {(editMode) ? <ProfileDataReduxForm initialValues={props.profile} profile={props.profile} onSubmit={onSubmit}/> : <ProfileData profile={props.profile} isOwner={props.isOwner} 
+          onEditProfile={onEditProfile} />} 
+          
+
           <div className={s.statusWrapper}>
             <div className={s.profileStatus}>Status:</div>
             <ProfileStatusWithHooks
@@ -43,16 +60,36 @@ const ProfileInfo = (props) => {
             />
           </div>
 
-
-
-
         </span>
-
-
-
       </div>
     </div>
   );
 };
+
+const Contacts = ({ contactTitle, contactValue }) => {
+  return (
+    <div>{contactTitle} : {contactValue} </div>
+  )
+};
+
+const ProfileData = (props) => {
+
+  return (
+    <div>
+
+      { props.isOwner ? <button onClick={props.onEditProfile}>Редактировать профиль</button> : undefined }
+      <div className={s.descriptionItem}>Full name: {props.profile.fullName}</div>
+      <div className={s.descriptionItem}>Looking for a job: {props.profile.lookingForAJob ? "yes" : "no"}</div>
+      <div className={s.descriptionItem}>Looking for a job description: {props.profile.lookingForAJobDescription}</div>
+
+      <div className={s.descriptionItem}>Contacts: {Object.keys(props.profile.contacts).map(key => {
+        return <Contacts contactTitle={key} contactValue={props.profile.contacts[key]} />
+      })}
+      </div>
+    </div>
+  )
+
+}
+
 
 export default ProfileInfo;
