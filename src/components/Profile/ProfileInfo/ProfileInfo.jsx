@@ -24,12 +24,12 @@ const ProfileInfo = (props) => {
   }
 
   const onSubmit = (formData) => {
-    // console.log('OnSubmit')
-    // console.log(formData)
-    // debugger
-    // console.log(props.profile.userId)
+    
     props.saveProfile(formData, props.profile.userId)
-    setEditMode(false)
+    .then( () => {
+      setEditMode(false)
+    })
+    
   }
   
   return (

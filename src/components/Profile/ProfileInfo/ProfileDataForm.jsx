@@ -2,14 +2,17 @@ import { reduxForm } from "redux-form"
 import { Field } from "redux-form"
 import { Input } from "../../../utils/validators/formscontrol"
 import { maxLength30 } from "../../../utils/validators/validators"
+import styles from "./../../../utils/validators/formscontrol.module.css"
 
 export const ProfileDataForm = ({ handleSubmit, profile, error}) => {
-    debugger
+//    debugger
+//    console.log('1')
+//    error && alert(error)
     return (
         <form onSubmit={handleSubmit}>
-            {error}
+            
             <button >Сохранить</button>
-
+            {error && <div className={styles.formcontrolcommonerror}>{error}</div>}
             <Field
                 placeholder="fullName"
                 name="fullName"
@@ -47,7 +50,7 @@ export const ProfileDataForm = ({ handleSubmit, profile, error}) => {
            <div>
                Contacts: {Object.keys(profile.contacts).map( key => {
                    return (
-                       <div>{key}: <Field placeholder={key}
+                       <div id={key}>{key}: <Field placeholder={key}
                        name={"contacts."+ key}
                        component={Input} 
                       />
@@ -64,4 +67,4 @@ export const ProfileDataForm = ({ handleSubmit, profile, error}) => {
     )
 }
 
-export const ProfileDataReduxForm = reduxForm({ form: " " })(ProfileDataForm);
+export const ProfileDataReduxForm = reduxForm({ form: 'editProfile'})(ProfileDataForm);
