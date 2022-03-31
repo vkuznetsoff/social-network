@@ -1,7 +1,8 @@
 import { stopSubmit } from "redux-form";
-import { authAPI } from "../api/api";
+import { authAPI, securityAPI } from "../api/api";
 
 const SET_USER_DATA = "SET_USER_DATA";
+const SET_CAPTCHA_URL = "SET_CAPTCHA_URL"
 
 let initialState = {
   id: null,
@@ -9,6 +10,7 @@ let initialState = {
   login: null,
   isAuth: false,
   isFetching: false,
+  captchaUrl: null
 };
 
 const authReducer = (state = initialState, action) => {
@@ -20,18 +22,32 @@ const authReducer = (state = initialState, action) => {
         isAuth: true,
       };
 
+    case SET_CAPTCHA_URL:
+      return {
+        ...state,
+        captchaUrl: action.url
+      };
+
     default:
       return state;
   }
 };
 
 export const setUserAuthData = (id, email, login, isAuth) => {
-  //debugger
   return {
     type: SET_USER_DATA,
     payload: { id, email, login, isAuth },
   };
 };
+
+export const setCaptchaUrl = (url) => {
+  return {
+    type: SET_CAPTCHA_URL,
+    url
+  };
+};
+
+
 
 export const getAuth = () => async (dispatch) => {
   let response = await authAPI.me();
@@ -49,14 +65,16 @@ export const getAuth = () => async (dispatch) => {
 
 };
 
-export const login = (email, password, rememberMe) => async (dispatch) => {
+export const login = (email, password, rememberMe, captcha) => async (dispatch) => {
 
-  let response = await authAPI.login(email, password, rememberMe);
-
+  let response = await authAPI.login(email, password, rememberMe, captcha);
+  debugger
   if (response.data.resultCode === 0) {
     dispatch(getAuth());
   } else {
-
+    if (response.data.resultCode === 10) {
+      dispatch(getCaptcha())
+    }
     let message = response.data.messages
       ? response.data.messages[0]
       : "Some error";
@@ -75,6 +93,12 @@ export const logout = () => async (dispatch) => {
   if (response.data.resultCode === 0) {
     dispatch(setUserAuthData(null, null, null, false));
   }
+};
+
+export const getCaptcha = () => async (dispatch) => {
+  const response = await securityAPI.getCaptchaUrl();
+  const url = response.data.url;
+  dispatch(setCaptchaUrl(url))
 
 };
 
