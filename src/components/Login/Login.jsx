@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { Field, reduxForm } from "redux-form";
-import { login, logout } from "../../redux/auth_reducer";
+import { login, logout } from "../../redux/auth_reducer.ts";
 import { CreateField, Input } from "../../utils/validators/formscontrol";
 import { maxLength30, requiredField } from "../../utils/validators/validators";
 import styles from "./../../utils/validators/formscontrol.module.css"

@@ -1,7 +1,6 @@
-import { type } from "os";
-import { stopSubmit } from "redux-form";
-import { authAPI } from "../api/api";
-import { getAuth } from "./auth_reducer";
+// import { getAuth } from './auth_reducer';
+
+import { getAuth } from "./auth_reducer.ts";
 
 const SET_INITIALIZED = "SET_INITIALIZED";
 const INIT_SUCCESS = "INIT_SUCCESS";
@@ -58,7 +57,7 @@ export const initSuccess = () : InitSuccessType => {
 };
 
 
-export const appInit = () => (dispatch) => {
+export const appInit = () => (dispatch: any) => {
   let promise = dispatch(getAuth())
 
   promise.then(() => { dispatch(initSuccess()) })

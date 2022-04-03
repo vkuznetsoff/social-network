@@ -6,7 +6,7 @@ import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import {
   sendMessageActionCreator,
   updateMessageActionCreator,
-} from "../../redux/dialogs_reducer";
+} from "../../redux/dialogs_reducer.ts";
 
 import Dialogs from "./Dialogs";
 

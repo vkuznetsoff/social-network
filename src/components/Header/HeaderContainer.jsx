@@ -2,7 +2,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Header from "./Header";
-import {getAuth, logout} from "../../redux/auth_reducer"
+import {getAuth, logout} from "../../redux/auth_reducer.ts"
 
 
 

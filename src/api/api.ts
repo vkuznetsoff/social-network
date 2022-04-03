@@ -32,7 +32,7 @@ export const userAPI = {
 
 }
 
-export const profileAPI = {
+export const profileAPI: any = {
   getProfile: (userID) => {
     return instance.get(`profile/${userID}`)
   },

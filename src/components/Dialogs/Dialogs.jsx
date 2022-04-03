@@ -2,10 +2,10 @@ import React from "react";
 import { Navigate, NavLink } from "react-router-dom";
 import { reduxForm } from "redux-form";
 import { Field } from "redux-form";
-import {
-  sendMessageActionCreator,
-  updateMessageActionCreator,
-} from "../../redux/dialogs_reducer";
+// import {
+//   sendMessageActionCreator,
+//   updateMessageActionCreator,
+// } from "../../redux/dialogs_reducer";
 import { Textarea } from "../../utils/validators/formscontrol";
 import { maxLength30, requiredField } from "../../utils/validators/validators";
 import s from "./Dialogs.module.css";
