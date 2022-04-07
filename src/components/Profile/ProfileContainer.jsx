@@ -3,7 +3,8 @@ import React from "react";
 
 import { connect } from "react-redux";
 import Profile from "./Profile";
-import { getUserProfile, getStatus, updateStatus, savePhoto, saveProfile } from "../../redux/profile_reducer"
+import { getUserProfile, getStatus, updateStatus, 
+  savePhoto, saveProfile } from "../../redux/profile_reducer.ts"
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
 import { withRouter } from "../../hoc/withrouter";

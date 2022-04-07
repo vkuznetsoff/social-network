@@ -2,12 +2,20 @@
 import { useState } from "react";
 import s from "./Users.module.css"
 
+type PropsType = {
+  totaItemsCount: number, 
+  pageSize: number, 
+  currentPage:  number, 
+  onPageChanged: (p: number) => void, 
+  portionSize?: number
+}
 
-const Paginator = ({totaItemsCount, pageSize, currentPage, onPageChanged, portionSize=10 }) => {
+const Paginator: React.FC<PropsType> = ({totaItemsCount, pageSize, currentPage, 
+  onPageChanged, portionSize=10 }) => {
 
   let pagesCount = Math.ceil(totaItemsCount / pageSize)
 
-  let pages = [];
+  let pages: Array<number> = [];
 
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i)
@@ -35,15 +43,6 @@ const Paginator = ({totaItemsCount, pageSize, currentPage, onPageChanged, portio
     { portionCount > portionNumber &&
     <button onClick={ () => {setPortionNumber(portionNumber+1)}}>Next</button> 
 }
-
-
-    {/* <div>
-      {pages.map((p) => {
-        return <span className={currentPage === p && s.selectedPage}
-          onClick={(e) => { onPageChanged(p) }} >{p}</span>
-      })}
-
-    </div> */}
 
   </div>
 }

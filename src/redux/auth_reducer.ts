@@ -1,5 +1,5 @@
 import { stopSubmit } from "redux-form";
-import { authAPI, securityAPI } from "../api/api";
+import { authAPI, securityAPI } from "../api/api.ts";
 
 const SET_USER_DATA = "SET_USER_DATA";
 const SET_CAPTCHA_URL = "SET_CAPTCHA_URL"

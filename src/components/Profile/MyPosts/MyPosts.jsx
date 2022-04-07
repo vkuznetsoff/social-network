@@ -1,6 +1,6 @@
 import React from "react";
 import { addPostActionCreator, updatePostActionCreator } 
-from "../../../redux/profile_reducer";
+from "../../../redux/profile_reducer.ts";
 import s from "./MyPosts.module.css";
 import Posts from "./Post/Post";
 import { Field, reduxForm } from 'redux-form'

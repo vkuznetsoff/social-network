@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Navigate, NavLink } from "react-router-dom";
-import Paginator from "./Paginator";
+// import Paginator from "./Paginator";
 import s from "./Users.module.css"
 
 

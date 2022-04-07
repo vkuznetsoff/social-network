@@ -1,5 +1,5 @@
 import { PhotosType, UserType } from './../types/types';
-import { userAPI } from "../api/api";
+import { userAPI } from "../api/api.ts";
 import { updateObjectInArray } from "../utils/utils2";
 
 const FOLLOW = "FOLLOW";
