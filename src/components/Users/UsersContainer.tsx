@@ -20,23 +20,40 @@ import {
   getPageSize,
   getTotalUsersCount,
   getUsersFromState,
-} from "../../redux/users_selectors";
+} from "../../redux/users_selectors.ts";
 import React from "react";
 import { UserType } from "../../types/types";
 import { AppStateType } from "../../redux/redux_store";
+import { SetCurrentPageActionType, SetFetchingCountActionType, SetFollowingActionType, SetTotalUsersCountActionType, SetUsersActionType } from "../../redux/users_reducer";
 
-type PropsType = {
-  pageSize: number;
+type MapStatePropsType = {
   currentPage: number;
+  pageSize: number;
   isFetching: boolean;
   totalUsersCount: number;
   users: Array<UserType>;
   followingInProgress: Array<number>;
-  isAuth: boolean;
-  follow: () => void;
-  unfollow: () => void;
+
+}
+
+type MapDispatchPropsType = {
+  follow: (userID: number) => void;
+  unfollow: (userID: number) => void;
   getUsers: (currentPage: number, pageSize: number) => void;
-};
+  // setUsers: (users: Array<UserType>) => SetUsersActionType
+  // setCurrentPage: (currentPage: number) => SetCurrentPageActionType,
+  // setTotalUsersCount: (count: number) => SetTotalUsersCountActionType,
+  // setFetching: (isFetching: boolean) => SetFetchingCountActionType,
+  // setFollowing: (isFetching: boolean, userID: number) => SetFollowingActionType,   
+
+}
+
+type OwnPropsType = {
+  pageTitle: string,
+  isAuth: boolean
+}
+
+type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType
 
 class UsersContainer extends React.Component<PropsType> {
   componentDidMount() {
@@ -50,9 +67,11 @@ class UsersContainer extends React.Component<PropsType> {
   render() {
     return (
       <>
+        <h1>{this.props.pageTitle}</h1>
         {this.props.isFetching && <Preloader />}
 
         <Users
+
           totalUsersCount={this.props.totalUsersCount}
           pageSize={this.props.pageSize}
           currentPage={this.props.currentPage}
@@ -68,9 +87,8 @@ class UsersContainer extends React.Component<PropsType> {
   }
 }
 
-let mapStateToProps = (state: AppStateType) => {
+let mapStateToProps = (state: AppStateType): MapStatePropsType => {
   return {
-
     users: getUsersFromState(state), //в компоненту User это свойство придёт через props
     pageSize: getPageSize(state),
     totalUsersCount: getTotalUsersCount(state),
@@ -81,12 +99,8 @@ let mapStateToProps = (state: AppStateType) => {
 };
 
 export default compose(
-  connect(mapStateToProps, {
-    setUsers,
-    setCurrentPage,
-    setTotalUsersCount,
-    setFetching,
-    setFollowing,
+  //<TStateProps = {}, TDispatchProps = {}, TOwnProps = {}, State = DefaultState>
+  connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>(mapStateToProps, {
     getUsers,
     follow,
     unfollow,

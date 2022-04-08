@@ -110,7 +110,7 @@ type UnfollowAcceptType = {
 export const unfollowAccept = (userID: number): UnfollowAcceptType => (
   { type: UNFOLLOW, userID: userID });
 
-type SetUsersActionType = {
+export type SetUsersActionType = {
   type: typeof SET_USERS,
   users: Array<UserType>
 }
@@ -118,7 +118,7 @@ type SetUsersActionType = {
 export const setUsers = (users: Array<UserType>): SetUsersActionType => (
   { type: SET_USERS, users });
 
-type SetCurrentPageActionType = {
+export type SetCurrentPageActionType = {
   type: typeof SET_CURRENT_PAGE,
   currentPage: number
 }
@@ -127,14 +127,14 @@ export const setCurrentPage = (currentPage: number): SetCurrentPageActionType =>
   { type: SET_CURRENT_PAGE, currentPage: currentPage });
 
 
-type SetTotalUsersCountActionType = {
+export type SetTotalUsersCountActionType = {
   type: typeof SET_TOTAL_USERS_COUNT,
   totalUsersCount: number
 }
 export const setTotalUsersCount = (count: number): SetTotalUsersCountActionType => (
   { type: SET_TOTAL_USERS_COUNT, totalUsersCount: count });
 
-type SetFetchingCountActionType = {
+export type SetFetchingCountActionType = {
   type: typeof SET_FETCHING,
   isFetching: boolean
 }
@@ -142,7 +142,7 @@ type SetFetchingCountActionType = {
 export const setFetching = (isFetching: boolean): SetFetchingCountActionType => (
   { type: SET_FETCHING, isFetching: isFetching });
 
-type SetFollowingActionType = {
+export type SetFollowingActionType = {
   type: typeof FOLLOWING_IN_PROGRESS,
   isFetching: boolean,
   userID: number

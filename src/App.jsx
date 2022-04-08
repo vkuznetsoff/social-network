@@ -51,7 +51,7 @@ class App extends React.Component {
                 </React.Suspense>
               } />
 
-              <Route path="/users" element={<UsersContainer />} />
+              <Route path="/users" element={<UsersContainer pageTitle={"SocialNW"} />} />
 
               <Route path="/music" element={<Music />} />
 
