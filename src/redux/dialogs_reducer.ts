@@ -51,7 +51,7 @@ const dialogReducer = (state = initialState, action: any) : InitialStateType => 
   }
 };
 
-type SendMessageActionCreatorType = {
+export type SendMessageActionCreatorType = {
   type: typeof SEND_MESSAGE,
   newmessage: string | null
 }

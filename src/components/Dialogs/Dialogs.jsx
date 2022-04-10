@@ -9,33 +9,20 @@ import { Field } from "redux-form";
 import { Textarea } from "../../utils/validators/formscontrol";
 import { maxLength30, requiredField } from "../../utils/validators/validators";
 import s from "./Dialogs.module.css";
-import DialogItem from "./DilogItem/DialogItem";
-import MessageItem from "./MessageItem/MessageItem";
+import DialogItem from "./DilogItem/DialogItem.tsx";
+import MessageItem from "./MessageItem/MessageItem.tsx";
 
-const Dialogs = (props) => {
-  // let newMessageEl = React.createRef();
-  // let state = props.dialogPage;
-
-  // let onSendMessage = () => {
-  //   props.sendMessage();
-  // };
-
-  // let onMessageTextChange = (e) => {
-  //   //let text = newMessageEl.current.value;
-  //   let text = e.target.value;
-  //   props.updateNewMessageText(text);
-
-  // };
-
-  let dialogs = props.dialogPage.dialogs.map((d) => (
+const Dialogs = ({dialogPage, sendMessage}) => {
+  
+  let dialogs = dialogPage.dialogs.map((d) => (
     <DialogItem id={d.id} name={d.name} />
   ));
-  let messages = props.dialogPage.messages.map((m) => (
+  let messages = dialogPage.messages.map((m) => (
     <MessageItem text={m.text} />
   ));
 
   const addNewMessage = (values) => {
-    props.sendMessage(values.newmessagetext);
+    sendMessage(values.newmessagetext);
   };
 
   return (

@@ -3,7 +3,7 @@ import { NO_PROFILE_IMAGE } from "../../../img/img";
 import Preloader from "../../Preloader/Preloader";
 import { ProfileDataForm, ProfileDataReduxForm } from "./ProfileDataForm";
 import s from "./ProfileInfo.module.css";
-import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks.tsx";
 
 const ProfileInfo = (props) => {
 

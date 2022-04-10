@@ -24,7 +24,13 @@ import {
 import React from "react";
 import { UserType } from "../../types/types";
 import { AppStateType } from "../../redux/redux_store";
-import { SetCurrentPageActionType, SetFetchingCountActionType, SetFollowingActionType, SetTotalUsersCountActionType, SetUsersActionType } from "../../redux/users_reducer";
+import {
+  SetCurrentPageActionType,
+  SetFetchingCountActionType,
+  SetFollowingActionType,
+  SetTotalUsersCountActionType,
+  SetUsersActionType,
+} from "../../redux/users_reducer";
 
 type MapStatePropsType = {
   currentPage: number;
@@ -33,8 +39,7 @@ type MapStatePropsType = {
   totalUsersCount: number;
   users: Array<UserType>;
   followingInProgress: Array<number>;
-
-}
+};
 
 type MapDispatchPropsType = {
   follow: (userID: number) => void;
@@ -44,16 +49,15 @@ type MapDispatchPropsType = {
   // setCurrentPage: (currentPage: number) => SetCurrentPageActionType,
   // setTotalUsersCount: (count: number) => SetTotalUsersCountActionType,
   // setFetching: (isFetching: boolean) => SetFetchingCountActionType,
-  // setFollowing: (isFetching: boolean, userID: number) => SetFollowingActionType,   
-
-}
+  // setFollowing: (isFetching: boolean, userID: number) => SetFollowingActionType,
+};
 
 type OwnPropsType = {
-  pageTitle: string,
-  isAuth: boolean
-}
+  pageTitle: string;
+  isAuth: boolean;
+};
 
-type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType
+type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType;
 
 class UsersContainer extends React.Component<PropsType> {
   componentDidMount() {
@@ -71,7 +75,6 @@ class UsersContainer extends React.Component<PropsType> {
         {this.props.isFetching && <Preloader />}
 
         <Users
-
           totalUsersCount={this.props.totalUsersCount}
           pageSize={this.props.pageSize}
           currentPage={this.props.currentPage}
@@ -100,10 +103,13 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
 
 export default compose(
   //<TStateProps = {}, TDispatchProps = {}, TOwnProps = {}, State = DefaultState>
-  connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>(mapStateToProps, {
-    getUsers,
-    follow,
-    unfollow,
-  }),
+  connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>(
+    mapStateToProps,
+    {
+      getUsers,
+      follow,
+      unfollow,
+    }
+  ),
   withAuthRedirect
 )(UsersContainer);

@@ -1,5 +1,6 @@
 {
     "recommendations": [
-        "vespa-dev-works.jestRunIt"
+        "vespa-dev-works.jestrunit",
+        "numso.prettier-standard-vscode"
     ]
 }

@@ -1,3 +1,4 @@
+import { ProfileType } from './../types/types';
 import axios from "axios";
 
 const instance = axios.create({
@@ -10,21 +11,21 @@ const instance = axios.create({
 
 
 
-export const userAPI = {
+export const userAPI: any = {
   getUsers: (currentPage = 1, pageSize = 10) => {
     return instance.get(`users?page=${currentPage}&count=${pageSize}`)
       .then(response => response.data)
   },
 
-  unfollowUser: (userID) => {
+  unfollowUser: (userID: number) => {
     return instance.delete(`follow/${userID}`).then(response => response.data)
   },
 
-  followUser: (userID) => {
+  followUser: (userID: number) => {
     return instance.post(`follow/${userID}`).then(response => response.data)
   },
 
-  getProfile: (userID) => {
+  getProfile: (userID: number) => {
     console.log('This method will be run from ProfileAPI')
     return profileAPI.getProfile(userID)
 
@@ -33,40 +34,40 @@ export const userAPI = {
 }
 
 export const profileAPI: any = {
-  getProfile: (userID) => {
+  getProfile: (userID: number) => {
     return instance.get(`profile/${userID}`)
   },
 
-  getUserStatus: (userID) => {
+  getUserStatus: (userID: number) => {
     
     return instance.get(`/profile/status/${userID}`)
   },
 
-  updateStatus: (status) => {
+  updateStatus: (status: string) => {
     return instance.put(`/profile/status`, { status: status })
   },
 
-  loadPhoto: (file) => {
+  loadPhoto: (file: any) => {
     let formData = new FormData();
     formData.append("image", file)
     return instance.put(`/profile/photo`, formData,
     { headers: {"Content-Type": "multipart/form-data"} })
   },
 
-  saveProfile: (profile) => {
+  saveProfile: (profile: ProfileType) => {
     return instance.put(`/profile`, profile)
   },
 
 }
 
 
-export const authAPI = {
+export const authAPI: any = {
   me() {
     return instance.get('auth/me/')
 
   },
 
-  login(email, password, rememberMe = false, captcha = null) {
+  login(email: string, password: string, rememberMe: boolean = false, captcha: string = null) {
     debugger
     return instance.post('auth/login', { email, password, rememberMe, captcha })
   },
@@ -76,7 +77,7 @@ export const authAPI = {
   }
 }
 
-export const securityAPI = {
+export const securityAPI: any = {
   getCaptchaUrl() {
     return instance.get('security/get-captcha-url')
   }
